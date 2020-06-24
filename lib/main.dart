@@ -1,11 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'auth/login.dart';
+import 'ToDo/HomeScreen.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Widget homeScreen = HomeScreen();
+  FirebaseUser user = await FirebaseAuth.instance.currentUser();
+  if (user == null) {
+    homeScreen = LoginScreen();
+  }
+  runApp(ToDoApp(homeScreen));
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class ToDoApp extends StatelessWidget {
+  final Widget home;
+  ToDoApp(this.home);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,26 +25,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('ToDo'),
-      ),
-      body: Container(
-        child: Text('dasd'),
-      ),
+      home: this.home,
     );
   }
 }

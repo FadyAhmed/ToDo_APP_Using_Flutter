@@ -158,6 +158,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       if (result == null) {
         return _alert();
       } else {
+        
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => HomeScreen()));
       }

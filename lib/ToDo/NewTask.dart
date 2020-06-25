@@ -55,12 +55,13 @@ class _NewTaskState extends State<NewTask> {
       });
     }else{
       FirebaseAuth.instance.currentUser().then((user) {
-      Firestore.instance.collection('Tasks').document().setData({
+      Firestore.instance.collection(user.uid.toString()).document().setData({
         'body': _taskController.text,
         'done': 'false',
         'uid': user.uid,
         'date' : DateTime.now() ,
       }).then((_) {
+        
         Navigator.pop(context);
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => HomeScreen()));

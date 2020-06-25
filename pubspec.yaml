@@ -11,7 +11,9 @@ environment:
 dependencies:
   firebase_auth: ^0.16.1
   cloud_firestore: ^0.13.0+1 # new
-  expandable: ^4.1.4
+  provider: ^4.0.5+1
+
+
   flutter:
     sdk: flutter
 

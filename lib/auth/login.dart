@@ -127,10 +127,11 @@ class _LoginScreenState extends State<LoginScreen> {
       } on PlatformException catch (error) {
         log(error.toString());
       }
-
       if (user == null) {
         return _alert();
       } else {
+
+        
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => HomeScreen()));
       }
